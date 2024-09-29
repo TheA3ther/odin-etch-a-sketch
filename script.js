@@ -1,6 +1,7 @@
 let gridsize = 16;
 let IsPaintKeyDown = false;
 let IsEraseKeyDown = false;
+let IsGridVisible = false;
 let IsRandomColorMode = false;
 const PAINTKEY = "Shift";
 const ERASEKEY = "Control";
@@ -9,12 +10,14 @@ const VHRATIO = 80;
 const container = document.querySelector(".container");
 const newgrid = document.querySelector("#newgrid");
 const cleargrid = document.querySelector("#cleargrid");
+const togglegrid = document.querySelector("#togglegrid");
 const togglecolor = document.querySelector("#togglecolor");
 const currentmode = document.querySelector("#currentmode");
 
 container.addEventListener('mouseover', (event) => ColorGridUnit(event));
 newgrid.addEventListener('click', AlertWrapper);
 cleargrid.addEventListener('click', ClearGrid);
+togglegrid.addEventListener('click', ToggleGridMode);
 togglecolor.addEventListener('click', ToggleColorMode);
 document.addEventListener('keydown', (event) => SetKeyDown(event));
 document.addEventListener('keyup', (event) => SetKeyUp(event));
@@ -64,6 +67,15 @@ function AlertWrapper(){
     }
 }
 
+function ToggleGridMode(){
+    container.childNodes.forEach(gridRow => {
+        gridRow.childNodes.forEach(gridUnit => {
+            gridUnit.style.border = IsGridVisible ? "0px" : "1px solid black";
+        })
+    });
+    IsGridVisible = !IsGridVisible;
+}
+
 function ToggleColorMode(){
     IsRandomColorMode = !IsRandomColorMode;
     currentmode.textContent = IsRandomColorMode ? "Random" : "Grey";
@@ -92,6 +104,8 @@ function GenerateGrid(size){
             const gridUnit = document.createElement("div");
             gridUnit.classList.add("gridUnit");
             gridUnit.style.maxWidth = (VHRATIO/size) + 'vh';
+            gridUnit.style.backgroundColor = "white";
+            gridUnit.style.border = IsGridVisible ? "1px solid black" : "0px";
             gridRow.appendChild(gridUnit);
         }
         container.appendChild(gridRow);
