@@ -1,6 +1,9 @@
 .container {
+    border:1px solid;
     display: flex;
     flex-direction: column;
+    max-width: 80vh;
+    aspect-ratio: 1/1;
 }
 
 .gridRow {
@@ -9,7 +12,6 @@
 }
 
 .gridUnit {
-    border: 1px solid black;
     flex: 1;
     max-width: 5vh;
     box-sizing: border-box;
@@ -17,5 +19,9 @@
 }
 
 button {
-    margin: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
+
+
