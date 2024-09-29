@@ -40,7 +40,12 @@ function SetKeyUp(event){
 function ColorGridUnit(event){
     target = event.target;
     if (IsEraseKeyDown) target.style.backgroundColor = "white";
-    if (IsPaintKeyDown) target.style.backgroundColor = "grey";
+    if (IsPaintKeyDown) target.style.backgroundColor = RandomColor();
+}
+
+function RandomColor(){
+    return("rgb(" + Math.random() * 256 + "," + Math.random() * 256 + "," + Math.random() * 256 + ")");
+
 }
 
 function AlertWrapper(){
