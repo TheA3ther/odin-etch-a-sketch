@@ -1,7 +1,13 @@
 const GRIDSIZE = 16;
+
 const container = document.querySelector(".container");
 
+container.addEventListener('mouseover', (event) => ColorGridUnit(event));
 
+function ColorGridUnit(event){
+    target = event.target;
+    target.style.backgroundColor = "grey";
+}
 
 function GenerateGrid(size){
     for (i = 0; i < size; i++){

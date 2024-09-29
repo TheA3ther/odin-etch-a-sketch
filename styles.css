@@ -5,12 +5,13 @@
 
 .gridRow {
     display: flex;
-    flex: 0 0 auto;
+    flex: 1;
 }
 
 .gridUnit {
-    border: 2px solid black;
+    border: 1px solid black;
     flex: 1;
     max-width: 5vh;
+    box-sizing: border-box;
     aspect-ratio: 1/1;
 }
