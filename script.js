@@ -40,7 +40,11 @@ function SetKeyUp(event){
 function ColorGridUnit(event){
     target = event.target;
     if (IsEraseKeyDown) target.style.backgroundColor = "white";
-    if (IsPaintKeyDown) target.style.backgroundColor = RandomColor();
+    if (IsPaintKeyDown) {
+        target.style.backgroundColor = RandomColor();
+        let newOpacity = (parseFloat(target.style.opacity) || 0) + 0.1;
+        target.style.opacity = newOpacity;
+    }
 }
 
 function RandomColor(){
@@ -62,6 +66,7 @@ function ClearGrid(){
     container.childNodes.forEach(gridRow => {
         gridRow.childNodes.forEach(gridUnit => {
             gridUnit.style.backgroundColor = "white";
+            gridUnit.style.opacity = 0.1;
         })
     });
 }
