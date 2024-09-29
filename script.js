@@ -1,4 +1,8 @@
 let gridsize = 16;
+let IsPaintKeyDown = false;
+let IsEraseKeyDown = false;
+const PAINTKEY = "Shift";
+const ERASEKEY = "Control";
 const VHRATIO = 80;
 
 const container = document.querySelector(".container");
@@ -8,10 +12,35 @@ const cleargrid = document.querySelector("#cleargrid");
 container.addEventListener('mouseover', (event) => ColorGridUnit(event));
 newgrid.addEventListener('click', AlertWrapper);
 cleargrid.addEventListener('click', ClearGrid);
+document.addEventListener('keydown', (event) => SetKeyDown(event));
+document.addEventListener('keyup', (event) => SetKeyUp(event));
+
+function SetKeyDown(event){
+    switch (event.key){
+        case PAINTKEY: 
+            IsPaintKeyDown = true;
+            break;
+        case ERASEKEY:
+            IsEraseKeyDown = true;
+            break;
+    }
+}
+
+function SetKeyUp(event){
+    switch (event.key){
+        case PAINTKEY: 
+            IsPaintKeyDown = false;
+            break;
+        case ERASEKEY:
+            IsEraseKeyDown = false;
+            break;
+    }
+}
 
 function ColorGridUnit(event){
     target = event.target;
-    target.style.backgroundColor = "grey";
+    if (IsEraseKeyDown) target.style.backgroundColor = "white";
+    if (IsPaintKeyDown) target.style.backgroundColor = "grey";
 }
 
 function AlertWrapper(){
