@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.gridRow {
+    display: flex;
+    flex: 0 0 auto;
+}
+
+.gridUnit {
+    border: 2px solid black;
+    flex: 1;
+    max-width: 5vh;
+    aspect-ratio: 1/1;
+}
